@@ -1,5 +1,6 @@
 import {Sequelize} from 'sequelize-typescript'
-
+import { config } from "dotenv";
+config()
 const sequelize = new Sequelize({
     database : process.env.DB_NAME , // database ko name 
     username : process.env.DB_USERNAME, // database ko username, by default root
@@ -20,7 +21,7 @@ sequelize.authenticate()
 })
 
 // migrate garnu parxa/ push garnu parxa 
-sequelize.sync({force:true})
+sequelize.sync({alter:false})
 .then(()=>{
     console.log("migrated successfully new changes")
 })

@@ -4,7 +4,7 @@ import User from "../database/models/user.model"
 import { IExtendedRequest } from "./type"
 //import { IExtendedRequest } from "../middleware/type"
 
-const isLoggedIn = async (req:IExtendedRequest,res:Response,next:NextFunction)=>{
+const isLoggedIn = async(req:IExtendedRequest,res:Response,next:NextFunction)=>{
 
   /*
    req =  {
@@ -24,8 +24,9 @@ const isLoggedIn = async (req:IExtendedRequest,res:Response,next:NextFunction)=>
   */
     // check if login or not 
     // token accept 
-    const token = req.headers.authorization //jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30
-
+    
+   const token = req.headers.authorization //jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30
+    console.log(token, "TOKEN")
     if(!token){
         res.status(401).json({
             message : "please provide token"
@@ -33,8 +34,10 @@ const isLoggedIn = async (req:IExtendedRequest,res:Response,next:NextFunction)=>
         return
         
     }
+    
+
     // verify garne 
-    jwt.verify(token,'thisissecret',async (erroraayo,resultaayo : any)=>{
+    jwt.verify(token,"thisissecret",async (erroraayo,resultaayo : any)=>{
         if(erroraayo){
             res.status(403).json({
                 message : "Token invalid vayooo"
