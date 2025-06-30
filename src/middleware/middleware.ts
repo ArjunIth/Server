@@ -38,6 +38,7 @@ const isLoggedIn = async(req:IExtendedRequest,res:Response,next:NextFunction)=>{
 
     // verify garne 
     jwt.verify(token,"thisissecret",async (erroraayo,resultaayo : any)=>{
+        
         if(erroraayo){
             res.status(403).json({
                 message : "Token invalid vayooo"
